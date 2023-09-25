@@ -9,7 +9,7 @@ const { CustomAlphabet, customAlphabet } = require("nanoid");
 let nanoid = customAlphabet("1234567890abcdef", 8);
 
 mongoose.connect(
-  "mongodb+srv://0NITE:Zd9pgC9cW9gk5HtH@url-shortener.o66mj2m.mongodb.net/?retryWrites=true&w=majority",
+  process.env.MONGO_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
