@@ -13,6 +13,7 @@ mongoose.connect(
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    poolSize: 10
   },
   () => console.log("DB is connected...")
 );
