@@ -7,9 +7,9 @@ const { CustomAlphabet, customAlphabet } = require("nanoid");
 
 // HEX
 let nanoid = customAlphabet("1234567890abcdef", 8);
-
+const URI = "mongodb+srv://0NITE:QpwwZn9Tez9g6y1S@url-shortener.o66mj2m.mongodb.net/?retryWrites=true&w=majority"
 mongoose.connect(
-  'mongodb+srv://0NITE:Zd9pgC9cW9gk5HtH@url-shortener.o66mj2m.mongodb.net/?retryWrites=true&w=majority',
+  URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
