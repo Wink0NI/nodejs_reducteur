@@ -40,6 +40,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/urls", async (req, res, next) => {
+  console.log(URI, URL)
   let urls = await URL.find({}).exec();
   res.json(urls);
 });
