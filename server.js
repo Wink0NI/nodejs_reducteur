@@ -37,7 +37,7 @@ function executeQuery(query, data, callback) {
 
 const PORT = process.env.PORT || 3000;
 
-const link = "https://shortener-extra-f2ab66d60f80.herokuapp.com";
+const link = "https://shortener-extra-0f3c9c5b4cf1.herokuapp.com/";
 
 app = express();
 app.use(
