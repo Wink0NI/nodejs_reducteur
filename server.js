@@ -48,9 +48,7 @@ app.use(
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json({
-    message: "Home page",
-  });
+  res.sendFile(__dirname + '/dist/index.html');
 });
 
 app.post("/api/shorten", async (req, res, next) => {
@@ -141,7 +139,7 @@ app.get("/:slug", async (req, res, next) => {
 function notFound(req, res, next) {
   res.status(404);
   const error = new Error("Not found - " + req.originalUrl);
-  next(error);
+  return next(error);
 }
 
 function errorHandler(err, req, res, next) {
