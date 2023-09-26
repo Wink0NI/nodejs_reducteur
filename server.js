@@ -53,17 +53,6 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/urls", async (req, res, next) => {
-  executeQuery("SELECT * FROM links", (err, rows) => {
-    if (err) {
-      console.error("Error:", err);
-    } else {
-      res.json(rows);
-    }
-  });
-
-});
-
 app.post("/api/shorten", async (req, res, next) => {
   if (req.body.url) {
     try {
@@ -92,7 +81,7 @@ app.post("/api/shorten", async (req, res, next) => {
                   if (err) {
                     res.status(400).json({ message: err });
                   } else {
-                    res.status(200).json({ short: `http://localhost:3000/${slug}` });
+                    res.status(200).json({ short: `https://shortener-extra-f2ab66d60f80.herokuapp.com/${slug}` });
                   }
                 });
               } else {
