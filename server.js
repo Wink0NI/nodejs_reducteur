@@ -42,7 +42,7 @@ const link = "https://shortener-extra-f2ab66d60f80.herokuapp.com";
 app = express();
 app.use(
   cors({
-    origin: whiteList,
+    origin: "https://ephemeral-gaufre-dfc573.netlify.app",
   })
 ); // origin: * --> origin: mywebsite.com
 app.use(express.json());
