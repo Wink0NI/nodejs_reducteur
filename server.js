@@ -37,7 +37,7 @@ function executeQuery(query, data, callback) {
 
 const PORT = process.env.PORT || 3000;
 
-const whiteList = "https://ephemeral-gaufre-dfc573.netlify.app";
+const link = "https://shortener-extra-f2ab66d60f80.herokuapp.com";
 
 app = express();
 app.use(
@@ -48,7 +48,7 @@ app.use(
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + '/dist/index.html');
+  res.status(301).redirect("https://ephemeral-gaufre-dfc573.netlify.app")
 });
 
 app.post("/api/shorten", async (req, res, next) => {
@@ -79,7 +79,7 @@ app.post("/api/shorten", async (req, res, next) => {
                   if (err) {
                     res.status(400).json({ message: err });
                   } else {
-                    res.status(200).json({ short: `https://shortener-extra-f2ab66d60f80.herokuapp.com/${slug}` });
+                    res.status(200).json({ short: `${link}/${slug}` });
                   }
                 });
               } else {
