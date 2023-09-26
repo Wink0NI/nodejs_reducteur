@@ -79,7 +79,7 @@ app.post("/api/shorten", async (req, res, next) => {
                   if (err) {
                     res.status(400).json({ message: err });
                   } else {
-                    res.status(200).json({ short: `${link}/${slug}` });
+                    res.status(200).json({ lien_raccourci: `${link}/${slug}` });
                   }
                 });
               } else {
