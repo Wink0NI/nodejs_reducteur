@@ -37,12 +37,12 @@ function executeQuery(query, data, callback) {
 
 const PORT = process.env.PORT || 3000;
 
-const link = "https://cosmic-north-marble.glitch.me";
+const link = "https://reducteur-js-api.onrender.com/";
 
 app = express();
 app.use(
   cors({
-    origin: "https://cosmic-north-marble.glitch.me",
+    origin: "https://ephemeral-gaufre-dfc573.netlify.app",
   })
 ); // origin: * --> origin: mywebsite.com
 app.use(express.json());
