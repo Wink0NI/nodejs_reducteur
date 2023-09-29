@@ -1,58 +1,52 @@
 const { customAlphabet } = require('nanoid');
-const sqlite3 = require('sqlite3').verbose();
-
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const db = require('./models/Urls');
 require('dotenv').config();
+
 // HEX
-let nanoid = customAlphabet("123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 7);
+let nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 7);
+const PORT = process.env.PORT || 3000;
+const link = "https://reducteur-js-api.onrender.com";
 
 function executeQuery(query, data, callback) {
   try {
-    // Open the SQLite database
+    // enregistrer les modifications
     db.serialize(() => {
-      // Execute the provided query
-      db.all(query, data, (err, rows) => {
+      // Executer la fonction
+      db.all(query, data, (err, lignes) => {
         if (err) {
-          console.error("SQLite Error:", err);
-          callback(err, null); // Call the callback with an error
+          // Callback avec erreur
+          callback(err, null);
         } else {
-          // Call the callback with the rows
-          callback(null, rows);
+          // Callback avec les lignes
+          callback(null, lignes);
         }
-
-        // Close the database connection
-        
       });
     });
   } catch (error) {
-    // Handle any errors
+    // Cas erreur: Callback erreur
     console.error("Error:", error);
-    callback(error, null); // Call the callback with an error
+    callback(error, null);
   }
 }
-
-const PORT = process.env.PORT || 3000;
-
-const link = "https://reducteur-js-api.onrender.com";
 
 app = express();
 app.use(
   cors({
     origin: "*",
   })
-); // origin: * --> origin: mywebsite.com
-app.use(express.json());
+); // origine -> tous les sites
 
+app.use(express.json());
 app.use(express.static("dist"))
 
 app.post("/api/shorten", async (req, res, next) => {
   if (req.body.url) {
     try {
 
-      // make a request with Axios
+      // Axios pour se connecter
       const response = await axios.get(req.body.url.toString(), {
         validateStatus: (status) => {
           return status < 500;
@@ -61,17 +55,18 @@ app.post("/api/shorten", async (req, res, next) => {
 
       if (response.status !== 404) {
         const generateUniqueshortURL = () => {
-          const shortURL = nanoid(); // Générer un shortURL aléatoire
+          // Générer un shortURL aléatoire
+          const shortURL = nanoid();
           const shortURLCheckQuery = `SELECT * FROM links WHERE shortenURL = ?`;
-      
-          executeQuery(shortURLCheckQuery, [shortURL], (err, rows) => {
+
+          executeQuery(shortURLCheckQuery, [shortURL], (err, lignes) => {
             if (err) {
               res.status(400).json({ message: err });
             } else {
-              if (rows.length === 0) {
+              if (lignes.length === 0) {
                 // Le shortURL est unique, insérer l'URL
                 const insertQuery = `INSERT INTO links (originalURL, shortenURL) VALUES (?, ?)`;
-      
+
                 executeQuery(insertQuery, [req.body.url, shortURL], (err, result) => {
                   if (err) {
                     res.status(400).json({ message: err });
@@ -86,11 +81,11 @@ app.post("/api/shorten", async (req, res, next) => {
             }
           });
         };
-      
+
         // Commencer la génération avec un shortURL unique
         generateUniqueshortURL();
       }
-       else {
+      else {
         res.json({
           message: response.statusText,
           status: response.status,
@@ -112,16 +107,15 @@ app.get("/:shortURL", async (req, res, next) => {
     const shortURL = req.params.shortURL;
     const shortURLCheckQuery = "SELECT originalUrl FROM links WHERE shortenURL = ?";
 
-    executeQuery(shortURLCheckQuery, [shortURL], (err, rows) => {
+    executeQuery(shortURLCheckQuery, [shortURL], (err, lignes) => {
 
       if (err) {
         return next(err);
       }
 
-      if (rows.length > 0) {
+      if (lignes.length > 0) {
         // Rediriger vers l'URL d'origine
-        const originalUrl = rows[0].originalURL;
-        
+        const originalUrl = lignes[0].originalURL;
         res.status(301).redirect(originalUrl);
       } else {
         next();
