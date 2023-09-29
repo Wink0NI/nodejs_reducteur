@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const db = require('./models/Urls');
-require('dotenv').config();
 
 // HEX
 let nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 7);
@@ -147,4 +146,4 @@ function errorHandler(err, req, res, next) {
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
+app.listen(PORT, () => console.log(`Listening on port ${PORT}... in mode ${process.env.NODE_ENV}. Go to http://localhost:${PORT} if connected in local mode or to https://reducteur-js-api.onrender.com if deployed.`));
