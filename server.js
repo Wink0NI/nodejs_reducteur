@@ -47,7 +47,9 @@ app.use(
 ); // origin: * --> origin: mywebsite.com
 app.use(express.json());
 
-app.use(express.static("dist"));
+app.get("/", (req, res) => {
+  res.status(301).redirect("https://ephemeral-gaufre-dfc573.netlify.app")
+});
 
 app.post("/api/shorten", async (req, res, next) => {
   if (req.body.url) {
