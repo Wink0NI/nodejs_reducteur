@@ -37,7 +37,7 @@ function executeQuery(query, data, callback) {
 
 const PORT = process.env.PORT || 3000;
 
-const link = "https://shortener-extra-0f3c9c5b4cf1.herokuapp.com";
+const link = "https://cosmic-north-marble.glitch.me";
 
 app = express();
 app.use(
@@ -63,35 +63,35 @@ app.post("/api/shorten", async (req, res, next) => {
       });
 
       if (response.status !== 404) {
-        const generateUniqueSlug = () => {
-          const slug = nanoid(); // Générer un slug aléatoire
-          const slugCheckQuery = `SELECT * FROM links WHERE shortenURL = ?`;
+        const generateUniqueshortURL = () => {
+          const shortURL = nanoid(); // Générer un shortURL aléatoire
+          const shortURLCheckQuery = `SELECT * FROM links WHERE shortenURL = ?`;
       
-          executeQuery(slugCheckQuery, [slug], (err, rows) => {
+          executeQuery(shortURLCheckQuery, [shortURL], (err, rows) => {
             if (err) {
               res.status(400).json({ message: err });
             } else {
               if (rows.length === 0) {
-                // Le slug est unique, insérer l'URL
+                // Le shortURL est unique, insérer l'URL
                 const insertQuery = `INSERT INTO links (originalURL, shortenURL) VALUES (?, ?)`;
       
-                executeQuery(insertQuery, [req.body.url, slug], (err, result) => {
+                executeQuery(insertQuery, [req.body.url, shortURL], (err, result) => {
                   if (err) {
                     res.status(400).json({ message: err });
                   } else {
-                    res.status(200).json({ lien_raccourci: `${link}/${slug}` });
+                    res.status(200).json({ lien_raccourci: `${link}/${shortURL}` });
                   }
                 });
               } else {
-                // Le slug existe déjà, réessayer avec un nouveau slug
-                generateUniqueSlug();
+                // Le shortURL existe déjà, réessayer avec un nouveau shortURL
+                generateUniqueshortURL();
               }
             }
           });
         };
       
-        // Commencer la génération avec un slug unique
-        generateUniqueSlug();
+        // Commencer la génération avec un shortURL unique
+        generateUniqueshortURL();
       }
        else {
         res.json({
@@ -110,12 +110,12 @@ app.post("/api/shorten", async (req, res, next) => {
   }
 });
 
-app.get("/:slug", async (req, res, next) => {
+app.get("/:shortURL", async (req, res, next) => {
   try {
-    const slug = req.params.slug;
-    const slugCheckQuery = "SELECT originalUrl FROM links WHERE shortenURL = ?";
+    const shortURL = req.params.shortURL;
+    const shortURLCheckQuery = "SELECT originalUrl FROM links WHERE shortenURL = ?";
 
-    executeQuery(slugCheckQuery, [slug], (err, rows) => {
+    executeQuery(shortURLCheckQuery, [shortURL], (err, rows) => {
 
       if (err) {
         return next(err);
