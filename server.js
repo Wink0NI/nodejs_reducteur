@@ -36,7 +36,7 @@ function executeQuery(query, data, callback) {
 
 const PORT = process.env.PORT || 3000;
 
-const link = "https://reducteur-js-api.onrender.com/";
+const link = "https://reducteur-js-api.onrender.com";
 
 app = express();
 app.use(
