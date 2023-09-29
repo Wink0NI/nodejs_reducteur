@@ -41,7 +41,7 @@ const link = "https://reducteur-js-api.onrender.com";
 app = express();
 app.use(
   cors({
-    origin: "https://ephemeral-gaufre-dfc573.netlify.app",
+    origin: "*",
   })
 ); // origin: * --> origin: mywebsite.com
 app.use(express.json());
