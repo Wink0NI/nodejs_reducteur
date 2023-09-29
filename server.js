@@ -3,7 +3,6 @@ const sqlite3 = require('sqlite3').verbose();
 
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const axios = require('axios');
 const db = require('./models/Urls');
 require('dotenv').config();
