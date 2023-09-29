@@ -42,14 +42,12 @@ const link = "https://cosmic-north-marble.glitch.me";
 app = express();
 app.use(
   cors({
-    origin: "https://ephemeral-gaufre-dfc573.netlify.app",
+    origin: "https://cosmic-north-marble.glitch.me",
   })
 ); // origin: * --> origin: mywebsite.com
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.status(301).redirect("https://ephemeral-gaufre-dfc573.netlify.app")
-});
+app.use(express.static("dist"));
 
 app.post("/api/shorten", async (req, res, next) => {
   if (req.body.url) {
