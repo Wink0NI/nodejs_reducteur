@@ -56,7 +56,6 @@ Nous utilisons plusieurs modules JavaScript pour faciliter l'interaction entre l
 
 - **[axios](https://www.npmjs.com/package/axios) (v0.21.4) :** Pour effectuer des requêtes HTTP, notamment pour récupérer des informations sur les URL d'origine.
 - **[cors](https://www.npmjs.com/package/cors) (v2.8.5) :** Pour gérer la politique de même origine (CORS) et permettre des requêtes HTTP depuis des domaines différents.
-- **[dotenv](https://www.npmjs.com/package/dotenv) (v10.0.0) :** Pour charger des variables d'environnement, notamment pour sécuriser les informations sensibles telles que les clés d'API.
 - **[express](https://www.npmjs.com/package/express) (v4.17.1) :** Pour créer un serveur HTTP qui gère les demandes d'accès aux URL raccourcies.
 - **[nanoid](https://www.npmjs.com/package/nanoid) (v3.1.28) :** Pour générer des identifiants uniques pour les URL raccourcies.
 - **[sqlite3](https://www.npmjs.com/package/sqlite3) (v5.1.6) :** Pour interagir avec la base de données SQLite et effectuer des opérations de stockage et de récupération de données.
