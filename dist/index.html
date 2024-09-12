@@ -9,7 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="public/style.css">
     <script defer src="public/index.js"></script>
 </head>
@@ -21,6 +20,16 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/3858/3858629.png" alt="Icône Accueil">
             </a>
             <a class="navbar-item pl-1" href="#">LinkGenerator++</a>
+        </div>
+
+        <!-- Section à mettre à jour dynamiquement -->
+        <div class="navbar-end" id="auth-buttons">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a href="/login" id="login-button" class="button is-light">Se connecter</a>
+                    <a href="/register" id="register-button" class="button is-primary">S'inscrire</a>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -43,7 +52,42 @@
                     </div>
                 </form>
             </div>
+        </div>
     </section>
+
+    <script>
+        // Fonction pour vérifier la session
+        function checkSession() {
+            fetch('/check-session', {
+                method: 'GET',
+                credentials: 'include' // Pour inclure les cookies de session
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const authButtons = document.getElementById('auth-buttons');
+                    if (data.loggedIn) {
+                        // Modifier la barre de navigation si l'utilisateur est connecté
+                        authButtons.innerHTML = `
+                <div class="navbar-item">
+                    Connecté en tant que <strong>${data.username}</strong>
+                </div>
+                <div class="navbar-item">
+                    <a href="/my_links" class="button is-primary" id="my-links-button">Mes liens</a>
+                </div>
+                <div class="navbar-item">
+                    <a href="/logout" class="button is-light" id="logout-button">Se déconnecter</a>
+                </div>
+            `;
+                    }
+                })
+                .catch(error => console.error('Erreur lors de la vérification de la session :', error));
+        }
+
+
+        // Appeler la fonction au chargement de la page
+        window.addEventListener('DOMContentLoaded', checkSession);
+    </script>
+
 </body>
 
 </html>

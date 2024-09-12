@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Connexion</title>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="public/style.css">
+    <script defer src="public/script_connexion.js"></script>
+</head>
+
+<body class="full-height">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="https://cdn-icons-png.flaticon.com/512/3858/3858629.png" alt="Icône Accueil">
+            </a>
+            <a class="navbar-item pl-1" href="/">LinkGenerator++</a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <h1 class="title" href="https://reducteur-js-api.onrender.com">Connexion</h1>
+            <div class="box">
+                <form id="login-form">
+                    <div class="field">
+                        <label for="email_username" class="label">Nom d'utilisateur ou email :</label>
+                        <div class="control">
+                            <input type="text" id="email_username" name="email_username" required class="input"
+                                placeholder="Nom d'utilisateur / Email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="password" class="label">Mot de passe :</label>
+                        <div class="control">
+                            <input type="password" id="password" name="password" required class="input"
+                                placeholder="Mot de passe">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input type="submit" value="Se connecter" class="button is-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Texte "Première fois ??" avec lien d'inscription -->
+            <div class="has-text-centered">
+                <p>Première fois ?? <a href="/register">Créer un compte</a></p>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

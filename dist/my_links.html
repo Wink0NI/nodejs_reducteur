@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes liens</title>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="public/style.css">
+    <!-- Custom JS -->
+    <script defer src="public/script_my_links.js"></script>
+</head>
+
+<body class="full-height">
+    <!-- Navbar -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="https://cdn-icons-png.flaticon.com/512/3858/3858629.png" alt="Icône Accueil">
+            </a>
+            <a class="navbar-item pl-1" href="/">LinkGenerator++</a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <p>Connecté en tant que <span id="username">{name}</span></p>
+            </div>
+            <div class="navbar-item">
+                <a href="/logout" class="button is-light">Se déconnecter</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section Mes Liens -->
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Mes liens</h1>
+
+            <!-- Liste des liens réduits -->
+            <div class="box">
+                <p id="no-links-message" style="display: none;" class="has-text-centered">
+                    Aucun lien raccourci pour le moment.
+                </p>
+
+                <table class="table is-fullwidth is-hoverable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>URL longue</th>
+                            <th>URL réduite</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="links-table">
+                        <tr>
+                            <td>1</td>
+                            <td>https://store.steampowered.com/app/2197680/That_Time_I_Got_Reincarnated_as_a_Slime_ISEKAI_Chronicles/</td>
+                            <td><a href="https://reducteur-js-api.onrender.com/c8a4yQW" target="_blank">https://reducteur-js-api.onrender.com/c8a4yQW</a></td>
+                            <td>
+                                <button class="button is-small is-info" onclick="copyToClipboard('https://reducteur-js-api.onrender.com/c8a4yQW')">Copier</button>
+                                <button class="button is-small is-danger" onclick="deleteLink('c8a4yQW')">Supprimer</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

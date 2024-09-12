@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="public/style.css">
+    <!-- Custom JavaScript -->
+    <script defer src="public/script_inscription.js"></script>
+</head>
+
+<body class="full-height">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="https://cdn-icons-png.flaticon.com/512/3858/3858629.png" alt="Icône Accueil">
+            </a>
+            <a class="navbar-item pl-1" href="/">LinkGenerator++</a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Inscription</h1>
+            <div class="box">
+                <form id="register-form">
+                    <div class="field">
+                        <label for="username" class="label">Nom d'utilisateur :</label>
+                        <div class="control">
+                            <input type="text" id="username" name="username" required class="input" placeholder="Nom d'utilisateur">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="email" class="label">Email :</label>
+                        <div class="control">
+                            <input type="email" id="email" name="email" required class="input" placeholder="Votre email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="password" class="label">Mot de passe :</label>
+                        <div class="control">
+                            <input type="password" id="password" name="password" required class="input" placeholder="Mot de passe">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="confirm_password" class="label">Confirmez le mot de passe :</label>
+                        <div class="control">
+                            <input type="password" id="confirm_password" name="confirm_password" required class="input"
+                                placeholder="Confirmez votre mot de passe">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input type="submit" value="S'inscrire" class="button is-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Texte "Déjà inscrit ?" avec lien vers la page de connexion -->
+            <div class="has-text-centered">
+                <p>Déjà inscrit ? <a href="login">Connectez-vous ici</a></p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

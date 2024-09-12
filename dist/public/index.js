@@ -1,6 +1,6 @@
 "use strict";
 const textArea = document.createElement("textarea");
-const API_URL = "https://reducteur-js-api.onrender.com/api/shorten";
+const API_URL = "https://reducteur-js-api.onrender.com/";
 
 function copyToClipboard(text) {
     textArea.value = text;
@@ -74,7 +74,7 @@ form.addEventListener("submit", async (event) => {
     event.preventDefault();
     let load = { 'url': document.querySelector("#longURL").value }
     try {
-        let request = await (await fetch(API_URL, {
+        let request = await (await fetch("https://reducteur-js-api.onrender.com/"+"api/shorten", {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json'
