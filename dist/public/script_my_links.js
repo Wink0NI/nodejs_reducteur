@@ -74,6 +74,7 @@ function checkSession() {
         .then(data => {
             if (!data.loggedIn) {
                 // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+                window.location.href = '/login'; // Rediriger vers la page de connexion
    
             } else {
                 const user_info = document.querySelector("div.navbar-item>p>span");
