@@ -15,37 +15,35 @@ document.getElementById('login-form').addEventListener('submit', async function 
 
     // Vous pouvez ajouter des validations ici
     let load = { 'user_data': username, 'password': password };
-try {
-    let request = await (await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-            "Content-Type": 'application/json'
-        },
-        body: JSON.stringify(load)
-    })).json();
-    if (request.status === "SUCCESS") {
-        copyToClipboard(`Connecté en tant que ${request.data}`)
-        setTimeout(() => {
-            window.location.href = '/'; // Redirige vers la page d'accueil
-        }, 3000); // 3000 millisecondes = 3 secondes
-    } else {
-        copyToClipboard(request.message, request.message, false)
+    try {
+        let request = await (await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(load)
+        })).json();
+        if (request.status === "SUCCESS") {
+            copyToClipboard(`Connecté en tant que ${request.data}`)
+            setTimeout(() => {
+                window.location.href = '/'; // Redirige vers la page d'accueil
+            }, 3000); // 3000 millisecondes = 3 secondes
+        } else {
+            copyToClipboard(request.message, request.message, false)
+        }
+    } catch (e) {
+        throw e
     }
-} catch (e) {
-    throw e
-}
 
-function copyToClipboard(text, message = "", status = "success") {
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.body.removeChild(textArea);
-    Swal.fire({
-        icon: status,
-        title: status === "success" ? 'Connexion réussie!' : 'Erreur',
-        text: status === "success" ? 'Redirection vers le menu principal ...' : message,
-    });
-}
+    function copyToClipboard(text, message = "", status = "success") {
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.body.removeChild(textArea);
+        Swal.fire(status === "success" ? 'Connexion réussie!' : 'Erreur',
+            status === "success" ? 'Redirection vers le menu principal ...' : message,
+            status);
+    }
 
     // Code pour envoyer les données au serveur via AJAX ou fetch peut être ajouté ici
 });

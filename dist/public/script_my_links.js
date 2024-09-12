@@ -45,12 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // Fonction pour copier le lien réduit
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
-        
-        Swal.fire({
-            icon: 'success',
-            title: 'Copié avec succès!',
-            text: 'Lien copié dans le presse-papiers!',
-        });
+
+        Swal.fire('Copié avec succès!', 'Lien copié dans le presse-papiers!', 'success');
     });
 }
 
@@ -64,11 +60,8 @@ function deleteLink(linkId) {
             }
         })
         .catch(error => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Erreur',
-                text: 'Erreur lors de la suppression du lien...',
-            });
+            Swal.fire('Erreur', 'Erreur lors de la suppression du lien...', 'error');
+
         });
 }
 
@@ -78,20 +71,20 @@ function checkSession() {
         method: 'GET',
         credentials: 'include' // Inclure les cookies de session
     })
-    .then(response => response.json())
-    .then(data => {
-        if (!data.loggedIn) {
-            // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
-            window.location.href = '/login';
-        } else {
-            const user_info = document.querySelector("div.navbar-item>p>span");
-            user_info.textContent = data.username
-        }
-    })
-    .catch(error => {
-        console.error('Erreur lors de la vérification de la session:', error);
-        window.location.href = '/login'; // Rediriger si une erreur survient
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (!data.loggedIn) {
+                // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+                window.location.href = '/login';
+            } else {
+                const user_info = document.querySelector("div.navbar-item>p>span");
+                user_info.textContent = data.username
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la vérification de la session:', error);
+            window.location.href = '/login'; // Rediriger si une erreur survient
+        });
 }
 
 checkSession();

@@ -10,12 +10,11 @@ function copyToClipboard(text, message, status = "success") {
     document.body.appendChild(textArea);
     textArea.select();
     document.body.removeChild(textArea);
-    Swal.fire({
-        icon: status,
-        title: status === "success" ? 'Inscription réussie!' : 'Erreur',
-        text: status === "success" ? `Bienvenue ${message} !!!` : message,
-    });
-    
+    Swal.fire(status === "success" ? 'Inscription réussie!' : 'Erreur',
+        status === "success" ? `Bienvenue ${message} !!!` : message,
+        status
+    );
+
 }
 
 document.getElementById('register-form').addEventListener('submit', async function (event) {
@@ -32,7 +31,7 @@ document.getElementById('register-form').addEventListener('submit', async functi
         Swal.fire({
             title: 'Erreur',
             text: 'Les mots de passe ne correspondent pas',
-            icon: 'error',
+            type: 'warning',
             confirmButtonText: 'OK'
         });
     } else {
@@ -41,7 +40,7 @@ document.getElementById('register-form').addEventListener('submit', async functi
         // Vous pouvez ensuite envoyer les données au serveur avec fetch ou AJAX
         fetch(API_URL, {
             method: 'POST',
-            body: JSON.stringify({ username: username, email:  email, password: password }),
+            body: JSON.stringify({ username: username, email: email, password: password }),
             headers: { 'Content-Type': 'application/json' }
         }).then(response => response.json()).then(data => {
             if (data.status === "SUCCESS") {
