@@ -83,8 +83,9 @@ app.post("/api/user/create", async (req, res, next) => {
             if (err) {
               res.status(400).json({ status: "ERROR", message: "Le mail est déjà associé à un compte..." });
             } else {
-              res.status(200).json({ status: "SUCCESS" });
               req.session.user = { username: req.body.username, email: req.body.email };
+              res.status(200).json({ status: "SUCCESS" });
+              
             }
           });
         } else {
