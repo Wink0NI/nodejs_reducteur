@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     // Si des liens existent, cacher le message "Aucun lien"
                     noLinksMessage.style.display = 'none';
-                    linksTable.style.display = 'table'; // afficher la table
 
                     // Remplir la table avec les données des liens
                     data.links.forEach((link, index) => {
