@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <td>${index + 1}</td>
-                            <td>${link.originalURL}</td>
-                            <td><a href="${API_URL + link.shortenURL}" target="_blank">${API_URL + link.shortenURL}</a></td>
+                            <td  class="column-long-url">${link.originalURL}</td>
+                            <td  class="column-short-url"><a href="${API_URL + link.shortenURL}" target="_blank">${API_URL + link.shortenURL}</a></td>
                             <td>
                                 <button class="button is-small is-info" onclick="copyToClipboard('${API_URL + link.shortenURL}')">Copier</button>
                                 <button class="button is-small is-danger" onclick="deleteLink('${link.shortenURL}')">Supprimer</button>
@@ -74,7 +74,7 @@ function checkSession() {
         .then(data => {
             if (!data.loggedIn) {
                 // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
-                window.location.href = '/login';
+   
             } else {
                 const user_info = document.querySelector("div.navbar-item>p>span");
                 user_info.textContent = data.username
